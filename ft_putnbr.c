@@ -6,32 +6,46 @@
 /*   By: antgarci <antgarci@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 21:34:53 by antgarci          #+#    #+#             */
-/*   Updated: 2026/05/15 15:30:38 by antgarci         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:02:03 by antgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft_printf.h"
 
-int	putnbr(int n)
+static int	num_len(long n, int is_neg)
 {
-        long    nb;
-        char    c;
-	int	i;
+	int	len;
 
-        nb = (long)n;
-        if (nb < 0)
-        {
-                write(1, "-", 1);
-                nb = -nb;
-        }
-	i = 0;
-        if (nb >= 10)
+	len = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
 	{
-                putnbr((int)(nb / 10));
-        	i++;
+		n /= 10;
+		len ++;
 	}
-	c = '0' + (nb % 10);
-        write(1, &c, 1);
-	return (i);
+	if (is_neg)
+		len++;
+	return (len);
 }
 
+int	ft_putnbr(int n)
+{
+	long	nb;
+	char	c;
+	int	is_neg;
+	
+	is_neg = 0;
+	nb = (long)n;
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		nb = -nb;
+		is_neg = 1;
+	}
+	if (nb >= 10)
+		ft_putnbr((int)(nb / 10));
+	c = '0' + (nb % 10);
+	write(1, &c, 1);
+	return (num_len(nb, is_neg));
+}

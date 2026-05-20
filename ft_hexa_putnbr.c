@@ -6,40 +6,65 @@
 /*   By: antgarci <antgarci@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 16:17:04 by antgarci          #+#    #+#             */
-/*   Updated: 2026/05/15 17:08:45 by antgarci         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:22:54 by antgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include "ft_printf.h"
 
-int	hexa_putnbr(int n, char m)
+static char	*hexa_char(char c)
 {
-	long	nb;
-	char	*hexa_char;
-	char	*num;
-	int	i;
-	int	i_ini;
+	char	*str;
 
-	if (m == 'x')
-		hexa_char = "0123456789abcdef";
-	else if (m == 'X')
-		hexa_char = "0123456789ABCDEF";
-	nb = (long)n;
+	if (c == 'x')
+	{
+		str = "0123456789abcdef";
+		return (str);
+	}
+	else if (c == 'X')
+	{
+		str = "0123456789ABCDEF";
+		return (str);
+	}
+	return (0);
+}
+
+static int	num_len(unsigned long n)
+{
+	int	i;
+
 	i = 0;
 	while (n > 0)
 	{
 		n /= 16;
 		i++;
 	}
-	i_ini = i;
-	num = malloc((i + 1) * sizeof(char));
-	num[i--] = '\0';
-	while (nb > 0)
+	return (i);
+}
+
+int	ft_hexa_putnbr(unsigned int n, char m)
+{
+	char	*num;
+	char	*hex;
+	int		i;
+	int		len;
+
+	if (n == 0)
 	{
-		num[i--] = hexa_char[nb % 16];
-		nb /= 16;
+		write(1, "0", 1);
+		return (1);
 	}
-	write(1, &num[0], i_ini);
-	return (i_ini);
+	hex = hexa_char(m);
+	i = num_len(n);
+	len = num_len(n);
+	num = malloc((len + 1) * sizeof(char));
+	num[i--] = '\0';
+	while (n > 0)
+	{
+		num[i--] = hex[n % 16];
+		n /= 16;
+	}
+	write(1, &num[i + 1], len);
+	free(num);
+	return (len);
 }

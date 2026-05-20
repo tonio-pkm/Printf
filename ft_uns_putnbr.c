@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Test_var.c                                         :+:      :+:    :+:   */
+/*   ft_uns_putnbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antgarci <antgarci@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/13 18:29:36 by antgarci          #+#    #+#             */
-/*   Updated: 2026/05/13 18:52:56 by antgarci         ###   ########.fr       */
+/*   Created: 2026/05/20 14:13:12 by antgarci          #+#    #+#             */
+/*   Updated: 2026/05/20 17:18:20 by antgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdarg.h>
-int	check_add_even(int par)
-{
-	if (par % 2 == 0)
-		return (par);
-	return (0);
-}
-int	add(int n, ... )
-{
-	va_list	par;
-	int	i;
-	int	suma;
 
-	va_start(par, n);
-	i = 0;
-	suma = 0;
-	while (i < n)
-	{
-		suma += check_add_even(va_arg(par, int));
-		i++;
-	}
-	va_end(par);
-	return (suma);
-}
-int	main()
+#include "ft_printf.h"
+
+static int	num_len(unsigned int n)
 {
-	#include <stdio.h>
-	printf("%d", add(4, 1, 2, 3, 4));
+	int	len;
+
+	len = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
+
+int     ft_uns_putnbr(unsigned int n)
+{
+        char    c;
+
+        if (n >= 10)
+                ft_uns_putnbr(n / 10);
+        c = '0' + (n % 10);
+        write(1, &c, 1);
+        return (num_len(n));
 }

@@ -1,32 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_hexa_mem.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antgarci <antgarci@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 15:28:25 by antgarci          #+#    #+#             */
-/*   Updated: 2026/05/15 16:14:48 by antgarci         ###   ########.fr       */
+/*   Updated: 2026/05/20 17:38:24 by antgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <aio.h>
+#include "ft_printf.h"
 
-int	hexa_mem(void *n)
+static int	print_mem(char *str, int n)
 {
-	intptr_t	ptr;
-	char	*hex_chars;
-	char	*num;
 	int	i;
 
-	ptr = (intptr_t)n;
+	i = 0;
+	while (str[n])
+	{
+		write(1, &str[n++], 1);
+		i++;
+	}
+	return (i);
+}
+
+int	ft_hexa_mem(void *n)
+{
+	unsigned long	ptr;
+	char			*hex_chars;
+	char			*num;
+	int				i;
+	int				len;
+
+	ptr = (long)n;
+	if (!ptr)
+		return (write(1, "(nil)", 5));
 	num = malloc(19 * sizeof(char));
 	if (!num)
 		return (0);
 	hex_chars = "0123456789abcdef";
-	i = 19;
+	i = 18;
 	num[i--] = '\0';
 	while (ptr > 0)
 	{
@@ -35,6 +49,7 @@ int	hexa_mem(void *n)
 	}
 	num[i--] = 'x';
 	num[i] = '0';
-	write(1, &num[i], 19 - i);
-	return (19 - 1);
+	len = print_mem(num, i);
+	free(num);
+	return (len);
 }
