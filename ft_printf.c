@@ -6,7 +6,7 @@
 /*   By: antgarci <antgarci@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 15:44:20 by antgarci          #+#    #+#             */
-/*   Updated: 2026/05/20 15:16:01 by antgarci         ###   ########.fr       */
+/*   Updated: 2026/05/20 18:08:30 by antgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	ft_printf(char const *str, ...)
 		{
 			i++;
 			num_print += ft_conver_check(str[i], par);
-			//if (num_print != 0)
-				i++;
+			i++;
 		}
 		else
 		{

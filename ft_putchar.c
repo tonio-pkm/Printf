@@ -6,7 +6,7 @@
 /*   By: antgarci <antgarci@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 19:05:02 by antgarci          #+#    #+#             */
-/*   Updated: 2026/05/20 15:00:14 by antgarci         ###   ########.fr       */
+/*   Updated: 2026/05/20 18:05:34 by antgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_putstr(char *str)
 {
 	int	i;
 	int	len;
+
 	if (!str)
 		return (write(1, "(null)", 6));
 	i = 0;

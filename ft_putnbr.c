@@ -6,7 +6,7 @@
 /*   By: antgarci <antgarci@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 21:34:53 by antgarci          #+#    #+#             */
-/*   Updated: 2026/05/20 16:02:03 by antgarci         ###   ########.fr       */
+/*   Updated: 2026/05/20 18:09:21 by antgarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	ft_putnbr(int n)
 {
 	long	nb;
 	char	c;
-	int	is_neg;
-	
+	int		is_neg;
+
 	is_neg = 0;
 	nb = (long)n;
 	if (nb < 0)

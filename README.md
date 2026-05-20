@@ -20,6 +20,10 @@ make fclean
 ```
 make re
 ```
+* Run test given
+```
+make test
+```
 ## Resources
 [Variable arguments theory](https://www.programacionenc.net/index.php?option=com_content&view=article&id=61:funciones-en-c-con-lista-de-argumentos-variable&catid=37:programacion-cc&Itemid=55)
 Ai was used on this project to test the program after every part was already done.
